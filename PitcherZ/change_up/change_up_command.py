@@ -43,39 +43,39 @@ def append_data(batter_side, pitch_data):
         hc_right_plate_data.append(pitch_data)
         hc_right_plate_x.append(pitch_data[3])
         hc_right_plate_y.append(pitch_data[4])
-        hc_right_count.append("%s : %s" % (pitch_data[2], pitch_data[5]))
+        hc_right_count.append("count: %s, %s, pitch: %s" % (pitch_data[2], pitch_data[5], pitch_data[1]))
     elif  batter_side == "Left" and (pitch_data[2] == "3 - 1" or pitch_data[2] == "2 - 0"):
         hc_left_plate_data.append(pitch_data)
         hc_left_plate_x.append(pitch_data[3])
         hc_left_plate_y.append(pitch_data[4])
-        hc_left_count.append("%s : %s" % (pitch_data[2], pitch_data[5]))
+        hc_left_count.append("count: %s, %s, pitch: %s" % (pitch_data[2], pitch_data[5], pitch_data[1]))
     elif batter_side == "Right" and (pitch_data[2] == "2 - 2" or pitch_data[2] == "1 - 2" or pitch_data == "0 - 2"):
         pc_right_plate_data.append(pitch_data)
         pc_right_plate_x.append(pitch_data[3])
         pc_right_plate_y.append(pitch_data[4])
-        pc_right_count.append("%s : %s" % (pitch_data[2], pitch_data[5]))
+        pc_right_count.append("count: %s, %s, pitch: %s" % (pitch_data[2], pitch_data[5], pitch_data[1]))
     elif  batter_side == "Left" and (pitch_data[2] == "2 - 2" or pitch_data[2] == "1 - 2" or pitch_data == "0 - 2"):
         pc_left_plate_data.append(pitch_data)
         pc_left_plate_x.append(pitch_data[3])
         pc_left_plate_y.append(pitch_data[4])
-        pc_left_count.append("%s : %s" % (pitch_data[2], pitch_data[5]))
+        pc_left_count.append("count: %s, %s, pitch: %s" % (pitch_data[2], pitch_data[5], pitch_data[1]))
     elif  batter_side == "Right":
         neutral_right_plate_data.append(pitch_data)
         neutral_right_plate_x.append(pitch_data[3])
         neutral_right_plate_y.append(pitch_data[4])
-        neutral_right_count.append("%s : %s" % (pitch_data[2], pitch_data[5]))
+        neutral_right_count.append("count: %s, %s, pitch: %s" % (pitch_data[2], pitch_data[5], pitch_data[1]))
     elif  batter_side == "Left":
         neutral_left_plate_data.append(pitch_data)
         neutral_left_plate_x.append(pitch_data[3])
         neutral_left_plate_y.append(pitch_data[4])
-        neutral_left_count.append("%s : %s" % (pitch_data[2], pitch_data[5]))
+        neutral_left_count.append("count: %s, %s, pitch: %s" % (pitch_data[2], pitch_data[5], pitch_data[1]))
 
 
 # loop through all pitches and create an array of relevant data for each pitch.  Append individual
 # pitch arrays to larger arrays created above
 for i in range(2, 85):
     pitch = z_data.cell(row=i, column=15).value
-    if pitch == "Fastball":
+    if pitch == "ChangeUp":
         pitch_number = i - 1
         ab_count = "%s - %s" % (z_data.cell(row=i, column=13).value, z_data.cell(row=i, column=14).value)
         plate_loc_side = z_data.cell(row=i, column=37).value
@@ -153,9 +153,9 @@ neutral_right_fig = go.Figure(data=neutral_right_data, layout=layout)
 neutral_left_fig = go.Figure(data=neutral_left_data, layout=layout)
 
 # generate plots!
-plotly.offline.plot(hc_right_fig, filename='hc-right-fastball-scatter')
-plotly.offline.plot(hc_left_fig, filename='hc-left-fastball-scatter')
-plotly.offline.plot(pc_right_fig, filename='pc-right-fastball-scatter')
-plotly.offline.plot(pc_left_fig, filename='pc-left-fastball-scatter')
-plotly.offline.plot(neutral_right_fig, filename='neutral-right-fastball-scatter')
-plotly.offline.plot(neutral_left_fig, filename='neutral-left-fastball-scatter')
+plotly.offline.plot(hc_right_fig, filename='hc-right-change-up-scatter')
+plotly.offline.plot(hc_left_fig, filename='hc-left-change-up-scatter')
+plotly.offline.plot(pc_right_fig, filename='pc-right-change-up-scatter')
+plotly.offline.plot(pc_left_fig, filename='pc-left-change-up-scatter')
+plotly.offline.plot(neutral_right_fig, filename='neutral-right-change-up-scatter')
+plotly.offline.plot(neutral_left_fig, filename='neutral-left-change-up-scatter')
