@@ -6,7 +6,7 @@ import os
 
 # load data for pitcher Z
 wb = load_workbook('PitcherY_Game.xlsx')
-z_data = wb["Sheet1"]
+y_data = wb["Sheet1"]
 requested_pitch = sys.argv[1]
 
 # empty arrays hold data for plotting
@@ -77,15 +77,15 @@ def append_data(batter_side, pitch_data):
 # loop through all pitches and create an array of relevant data for each pitch.  Append individual
 # pitch arrays to larger arrays created above
 for i in range(2, 110):
-    pitch = z_data.cell(row=i, column=15).value
+    pitch = y_data.cell(row=i, column=15).value
     if pitch == requested_pitch or requested_pitch=="All":
         pitch_number = i - 1
-        ab_count = "%s - %s" % (z_data.cell(row=i, column=13).value, z_data.cell(row=i, column=14).value)
-        plate_loc_side = z_data.cell(row=i, column=37).value
-        plate_loc_height = z_data.cell(row=i, column=36).value
-        pitch_call = z_data.cell(row=i, column=17).value
+        ab_count = "%s - %s" % (y_data.cell(row=i, column=13).value, y_data.cell(row=i, column=14).value)
+        plate_loc_side = y_data.cell(row=i, column=37).value
+        plate_loc_height = y_data.cell(row=i, column=36).value
+        pitch_call = y_data.cell(row=i, column=17).value
         pitch_data = [pitch, pitch_number, ab_count, plate_loc_side, plate_loc_height, pitch_call]
-        batter_side = z_data.cell(row=i, column=8).value
+        batter_side = y_data.cell(row=i, column=8).value
         append_data(batter_side, pitch_data)
 
 

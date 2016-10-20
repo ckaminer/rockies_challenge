@@ -4,9 +4,9 @@ import plotly.graph_objs as go
 import sys
 import os
 
-# load data for pitcher Z
+# load data for pitcher X
 wb = load_workbook('PitcherX_Game.xlsx')
-z_data = wb["Sheet1"]
+x_data = wb["Sheet1"]
 requested_pitch = sys.argv[1]
 
 # empty arrays hold data for plotting
@@ -77,15 +77,15 @@ def append_data(batter_side, pitch_data):
 # loop through all pitches and create an array of relevant data for each pitch.  Append individual
 # pitch arrays to larger arrays created above
 for i in range(2, 89):
-    pitch = z_data.cell(row=i, column=15).value
+    pitch = x_data.cell(row=i, column=15).value
     if pitch == requested_pitch or requested_pitch=="All":
         pitch_number = i - 1
-        ab_count = "%s - %s" % (z_data.cell(row=i, column=13).value, z_data.cell(row=i, column=14).value)
-        plate_loc_side = z_data.cell(row=i, column=37).value
-        plate_loc_height = z_data.cell(row=i, column=36).value
-        pitch_call = z_data.cell(row=i, column=17).value
+        ab_count = "%s - %s" % (x_data.cell(row=i, column=13).value, x_data.cell(row=i, column=14).value)
+        plate_loc_side = x_data.cell(row=i, column=37).value
+        plate_loc_height = x_data.cell(row=i, column=36).value
+        pitch_call = x_data.cell(row=i, column=17).value
         pitch_data = [pitch, pitch_number, ab_count, plate_loc_side, plate_loc_height, pitch_call]
-        batter_side = z_data.cell(row=i, column=8).value
+        batter_side = x_data.cell(row=i, column=8).value
         append_data(batter_side, pitch_data)
 
 
